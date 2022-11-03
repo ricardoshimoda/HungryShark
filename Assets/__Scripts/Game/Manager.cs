@@ -40,6 +40,10 @@ public class Manager : MonoBehaviour
 
     public Transform spawnLocationRoot;
 
+    public GameObject endGamePanel;
+
+    public TMPro.TextMeshProUGUI finalScore;
+
     private float _chances = 1f;
 
     private int _score = 0;
@@ -54,7 +58,7 @@ public class Manager : MonoBehaviour
     public void incScore() {
         _score++;
         if (_chances > 0.2f) {
-            _chances = _chances - 0.05f;
+            _chances = _chances - 0.03f;
         }
         textScore.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + _score;
     }
@@ -63,6 +67,12 @@ public class Manager : MonoBehaviour
         _alive = false;
         player.GetComponent<Shark>().alive = false;
         CancelInvoke();
+        endGamePanel.SetActive(true);
+        finalScore.text = "Final Score: " + _score;
+    }
+
+    public void quitGame() {
+        Application.Quit();
     }
 
     private void spawnFish() {
