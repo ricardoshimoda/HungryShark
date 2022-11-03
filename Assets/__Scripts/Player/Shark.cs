@@ -13,7 +13,7 @@ public class Shark : MonoBehaviour
         }
         private set {
             if (_S != null) {
-                Debug.LogWarning("Second attempt to set Movement singleton _S");
+                Debug.LogWarning("Second attempt to set Shark singleton _S");
             }
             _S= value;
         }
@@ -24,15 +24,12 @@ public class Shark : MonoBehaviour
 
     public bool alive = true;
 
-    public GameObject score;
-
-    private int _score = 0;
+    public Manager gameManager;
 
     private Rigidbody2D _rb;
 
     void Start()
     {
-        _score = 0;
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -51,8 +48,7 @@ public class Shark : MonoBehaviour
             _rb.velocity = Vector3.zero;
             alive = false;
         } else if (other.tag == "GoodFish") {
-            _score++;
-            score.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + _score;
+            gameManager.incScore();
             Destroy(other.gameObject);
         }
 

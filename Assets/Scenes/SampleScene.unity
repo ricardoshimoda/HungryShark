@@ -322,6 +322,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -396,6 +397,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ea96b33d304604c8d62e6d67397498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goodFish: {fileID: 307545033194167620, guid: 01d5ac5bef4dca8478f5499629883188, type: 3}
+  badFish: {fileID: 6891172304872255877, guid: 03a7e514d08b60a4c818ff38e370f0eb, type: 3}
+  textScore: {fileID: 1563261773}
 --- !u!1 &614097690
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,6 +686,10 @@ PrefabInstance:
       propertyPath: score
       value: 
       objectReference: {fileID: 1563261773}
+    - target: {fileID: 7461808043105402423, guid: 8e049ca3722680e4c83e8a84ffc39830, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 519420033}
     m_RemovedComponents:
     - {fileID: 6386025212777088101, guid: 8e049ca3722680e4c83e8a84ffc39830, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8e049ca3722680e4c83e8a84ffc39830, type: 3}
