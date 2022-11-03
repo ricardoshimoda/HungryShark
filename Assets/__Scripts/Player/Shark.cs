@@ -50,7 +50,7 @@ public class Shark : MonoBehaviour
         if (other.tag == "BadFish") {
             _rb.velocity = Vector3.zero;
             alive = false;
-        } else {
+        } else if (other.tag == "GoodFish") {
             _score++;
             score.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + _score;
             Destroy(other.gameObject);
