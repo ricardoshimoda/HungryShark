@@ -22,18 +22,23 @@ public class Shark : MonoBehaviour
     [Tooltip("Constant speed for the shark")]
     public float speed = 10;
 
-    private bool _alive = true;
+    public bool alive = true;
+
+    public GameObject score;
+
+    private int _score = 0;
 
     private Rigidbody2D _rb;
 
     void Start()
     {
+        _score = 0;
         _rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        if (_alive) {
+        if (alive) {
             float x = Input.GetAxis("Horizontal");
             float y = Input.GetAxis("Vertical");
             Vector3 movement = Vector3.ClampMagnitude(new Vector3(x, y, 0), 1.0f);
@@ -44,8 +49,10 @@ public class Shark : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "BadFish") {
             _rb.velocity = Vector3.zero;
-            _alive = false;
+            alive = false;
         } else {
+            _score++;
+            score.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + _score;
             Destroy(other.gameObject);
         }
 
