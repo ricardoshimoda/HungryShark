@@ -24,6 +24,8 @@ public class Shark : MonoBehaviour
 
     public bool alive = true;
 
+    private bool _right = true;
+
     private Rigidbody2D _rb;
 
     void Start()
@@ -38,6 +40,11 @@ public class Shark : MonoBehaviour
             float y = Input.GetAxis("Vertical");
             Vector3 movement = Vector3.ClampMagnitude(new Vector3(x, y, 0), 1.0f);
             _rb.velocity = movement * speed;
+            if (_rb.velocity.x > 0 && !_right || _rb.velocity.x < 0 && _right) {
+                float xChange = -2 * transform.GetChild(0).localPosition.x;
+                transform.GetChild(0).localPosition += new Vector3 (xChange, 0, 0);
+                _right = !_right;
+            }
         } else {
             _rb.velocity = Vector3.zero;
         }

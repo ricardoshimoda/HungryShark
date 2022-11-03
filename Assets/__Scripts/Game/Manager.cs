@@ -17,14 +17,14 @@ public class Manager : MonoBehaviour
         }
     }
 
-    static private Transform _bulletAnchor;
-    static Transform bulletAnchor {
+    static private Transform _fishAnchor;
+    static Transform fishAnchor {
         get {
-            if (_bulletAnchor == null) {
-                GameObject go = new GameObject("BulletAnchor");
-                _bulletAnchor = go.transform;
+            if (_fishAnchor == null) {
+                GameObject go = new GameObject("FishAnchor");
+                _fishAnchor = go.transform;
             }
-            return _bulletAnchor;
+            return _fishAnchor;
         }
     }
 
@@ -68,11 +68,13 @@ public class Manager : MonoBehaviour
     private void spawnFish() {
         if (_alive) {
             Transform location = spawnLocationRoot.GetChild(Random.Range(0, spawnLocationRoot.childCount));
+            GameObject fish;
             if (Random.value < _chances) {
-                Instantiate(goodFish, location);
+                fish = Instantiate(goodFish, location);
             } else {
-                Instantiate(badFish, location);
+                fish = Instantiate(badFish, location);
             }
+            fish.transform.SetParent(fishAnchor);
         }
     }
 }
