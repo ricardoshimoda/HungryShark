@@ -24,8 +24,6 @@ public class Shark : MonoBehaviour
 
     public bool alive = true;
 
-    public Manager gameManager;
-
     private Rigidbody2D _rb;
 
     void Start()
@@ -40,17 +38,9 @@ public class Shark : MonoBehaviour
             float y = Input.GetAxis("Vertical");
             Vector3 movement = Vector3.ClampMagnitude(new Vector3(x, y, 0), 1.0f);
             _rb.velocity = movement * speed;
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "BadFish") {
+        } else {
             _rb.velocity = Vector3.zero;
-            alive = false;
-        } else if (other.tag == "GoodFish") {
-            gameManager.incScore();
-            Destroy(other.gameObject);
         }
-
     }
+
 }
